@@ -1,0 +1,237 @@
+https://www.debian.org/download
+https://www.debian.org/releases/bookworm/amd64/install.pt.pdf
+Crete a new virtual machine
+1024 ram and 30gb 
+Choose debian 64 bits
+Open the configuration and set the location of the boot
+
+
+AppArmor 
+Is a security feature that is included by default in Ubuntu since Ubuntu 7. It is a Mandatory Access Control (MAC) system that restricts the actions that processes can take on a Linux system. Similar to SELinux, AppArmor provides MAC security by allowing developers to define profiles that limit the access and actions of processes.
+AppArmor profiles are used to restrict processes. These profiles can be created by developers or come with the system or software packages. Profiles can run in "complain mode" or "enforce mode". In enforce mode (the default setting), AppArmor prevents applications from taking restricted actions. In complain mode, AppArmor allows applications to take restricted actions but logs the violations.
+
+https://www.howtogeek.com/118222/htg-explains-what-apparmor-is-and-how-it-secures-your-ubuntu-system/
+
+SELinux x AppArmor
+1.Access Control:
+SELinux uses security policies based on file labels, while AppArmor uses policies based on paths.
+AppArmor provides mandatory access control to supplement traditional discretionary access control.
+
+2.Complexity and Ease of Use:
+AppArmor is considered simpler and has a shorter learning curve compared to SELinux.
+AppArmor works directly with profiles (text files) for access control, and file operations are more straightforward.
+SELinux, on the other hand, is more complex and offers more control over how processes are isolated.
+Generating SELinux policies can be automated, but the complexity makes it more difficult to independently verify.
+
+3.Flexibility and Control:
+SELinux offers more levels of control and granularity in access restrictions compared to AppArmor.
+SELinux can provide more finely-grained access to files, but it may not necessarily provide significant advantages over AppArmor when it comes to restricting an attacker already confined within an AppArmor profile.
+AppArmor is simpler and more user-friendly, but it may not be as effective in environments requiring Multi-Level Security (MLS) or Multi-Category Security (MCS).
+
+4.Distribution Compatibility:
+Certain Linux distributions default to either AppArmor or SELinux. For example, RHEL-based distributions use SELinux, while Ubuntu-based distributions use AppArmor.
+While it is possible to install SELinux on Ubuntu/Debian-based distributions, it is not recommended to install AppArmor on RHEL-based distributions.
+
+5.Performance:
+AppArmor has a simpler implementation and is generally considered to have a faster policy loading time, resulting in faster system startup[2].
+SELinux, due to its complexity, may have a slower policy loading time.
+
+https://www.techtarget.com/searchdatacenter/tip/Compare-two-Linux-security-modules-SELinux-vs-AppArmor
+
+
+PARTICIONAR DISCOS
+METODO ASSISTIDO - USAR O DISCO TODO E LVM CRIPTOGRAFADO
+
+Logical Volume Management (LVM) - an alternative method of managing storage systems in Linux. Instead of creating traditional partitions, LVM allows you to create logical volumes that can be easily mounted in your filesystem as if they were disk partitions.
+
+Here are the key components of LVM:
+
+Physical Volumes (PV):
+Physical volumes are the raw storage devices that serve as the building blocks for higher levels of abstraction in LVM.
+Physical volumes can be regular storage devices such as hard drives or solid-state drives.
+LVM writes a header to the physical volume to allocate it for management.
+
+Volume Groups (VG):
+Volume groups abstract the characteristics of the underlying physical volumes and combine them into storage pools.
+Volume groups function as unified logical devices with combined storage capacity from the component physical volumes.
+Volume groups are identified with the prefix "vg" in LVM utilities.
+
+Logical Volumes (LV):
+Logical volumes are created within volume groups and act as flexible partitions.
+They are functionally equivalent to partitions on a physical disk but offer more flexibility.
+Logical volumes are where users and applications interact with the storage space provided by LVM.
+Logical volumes are identified with the prefix "lv" in LVM utilities.
+
+LVM provides several advantages, including:
+Dynamic resizing: Logical volumes can be resized on the fly, allowing you to easily adjust the size of your storage without disrupting the system[0].
+Snapshotting: LVM supports creating snapshots of logical volumes, which are point-in-time copies of the data. This can be useful for backup purposes or testing changes without affecting the original data[0].
+Striping and mirroring: LVM supports striping (spreading data across multiple physical volumes) and mirroring (creating redundant copies of data) to enhance performance and data redundancy[0].
+Flexibility: LVM allows you to easily manage storage by adding or removing physical volumes, creating or resizing logical volumes, and moving data between physical volumes[0].
+
+https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations
+
+
+PARTIÇÃO MANUAL
+
+Journaling file sistem
+A journaling file system is a type of file system that uses a technique called journaling to ensure the consistency and integrity of data on disk. It keeps a log, or journal, of changes that are about to be made to the file system, allowing for quick recovery in the event of a system crash or power failure.
+Consistency and Recovery:
+In the event of a system crash or power failure, the journaling file system can use the information in the journal to quickly recover the file system to a consistent state.
+During the recovery process, the file system replays the journal, applying the recorded changes to the file system.
+This ensures that the file system is brought back to a consistent state without the need for a time-consuming file system check (fsck) operation.
+
+Some popular journaling file systems include:
+ext4 (Fourth Extended File System): The default file system for many Linux distributions, offering improved performance and scalability compared to its predecessor, ext3.
+NTFS (New Technology File System): The default file system for Windows NT-based operating systems, providing journaling capabilities along with other advanced features.
+XFS (Extended File System): A high-performance journaling file system developed by SGI, designed for scalability and supporting large file systems[5].
+JFS (Journaled File System): A journaling file system originally developed by IBM for AIX, known for its robustness and low CPU usage.
+
+https://www.maketecheasier.com/journaling-in-file-system/
+
+
+GRUB install
+
+
+Frase secreta partição #5 criptografia
+Dificil58*/A
+
+ROOT
+Pass42*!raiz
+
+USER
+namoreir
+Senha42*!nova
+
+sudo usermod -aG sudo <username>
+The command sudo usermod -aG sudo <username> is used to add a user to the sudo group on a Linux system. Let's break down the command and its components:
+
+sudo: It is a command in Linux/Unix systems that allows a user with proper permissions to execute commands with elevated privileges, typically as the root user or another specified user.
+usermod: It is a command used to modify user account properties in Linux/Unix systems.
+-aG sudo: These options are used with usermod to add a user to a specific group. -a stands for "append," which means the user is added to the specified group without removing them from other groups. -G specifies the group to which the user is being added, in this case, the sudo group.
+<username>: This is the placeholder for the actual username of the user you want to add to the sudo group. You need to replace <username> with the desired username.
+
+getent group sudo
+getent: It is a command-line utility in Linux/Unix systems that retrieves entries from databases, including the system's user and group databases.
+group: This is an argument passed to getent to specify that we want to retrieve information about a group.
+sudo: This is the name of the group we want to retrieve information about.
+
+sudo whoami
+“root”
+
+The requiretty command in sudo is a configuration option that can be set in the sudoers file to specify whether a terminal (TTY) is required for a user to run commands with elevated privileges using the sudo command.
+
+
+UFW Uncomplicated Firewall
+A firewall is a network security device that plays a crucial role in protecting a network by monitoring and controlling the incoming and outgoing network traffic. It acts as a barrier between secured internal networks and untrusted external networks, such as the Internet. The primary function of a firewall is to enforce a defined set of security rules to determine whether to allow or block specific traffic based on various criteria.
+On the internet, data is transferred from one computer to the
+other using their IP addresses.
+But to avoid conflicts between the various internet protocols, every computer
+separates the access paths thanks to specified ports, marked after the IP address, like this: 109.234.160.5:80 (port #80). Website data, transferred via HTTP uses port 80. HTTPS uses psudort 443, SSH port 22, SMTP (outgoing email) port 25, IMAP (incoming email) port 143, etc.
+The rule for outgoing traffic is authorized by default. If we forbid outgoing traffic by default with the following command, the packet manager APT and other essential programs will stop working correctly
+
+We can try authorizing or denying the port 4242 for example with the
+following commands:
+sudo ufw allow 4242
+sudo ufw deny 4242
+
+To delete a rule, as we will be asked to do during the project evaluation, there are
+two options. The first is a simple command. Let’s say we have two rules in our list
+that we want to delete, “allow 4242” and “deny 4343”:
+$ sudo ufw delete allow 4242
+$ sudo ufw delete deny 4343
+abrir o doc do ssh
+$ sudo nano /etc/ssh/sshd_config
+refresh the ssh with changes
+$ sudo systemctl restart ssh
+tell our firewall to authorize the 4242 port connection
+$ sudo ufw allow 424if2
+
+atualizar o networking
+sudo systemctl restart networking
+
+ver meu ip atual
+hostname -I 
+
+conectar
+ssh namoreir@IP -p 4242
+
+pra sair
+exit 
+
+
+
+
+inet 10.0.2.15 netmask 255.255.255.0 broadcast 10.0.2.255
+inet6 fe80::a00:27ff:fe31:3294 prefixlen 64 scopeid 0x20<link>
+ether 08:00:27:31:32:94 txqueuelen 1000 (ethernet)
+
+change the etc/network/interfaces
+
+
+Password Policy
+sudo nano /etc/login.defs
+
+infos de login
+nome do sudo
+
+No arquivo /etc/login.defs no Debian, a opção UID_SELECTION (ou UID_MIN) define o valor mínimo do UID (User ID) que pode ser atribuído a um usuário ao criar uma nova conta. O UID é um identificador único atribuído a cada usuário no sistema Linux.
+
+Por padrão, o UID_SELECTION é definido como 1000, o que significa que o sistema começa a atribuir UIDs a partir desse valor. Isso é útil para distinguir entre contas de usuário regulares e contas de sistema. Contas de usuário regulares têm UIDs maiores que 1000, enquanto contas de sistema têm UIDs menores que 1000.
+
+Ao criar um novo usuário usando o comando useradd, você pode especificar o UID desejado usando a opção -u ou --uid. Por exemplo:
+
+sudo useradd -u 1500 username
+
+Contas de usuário regulares: Essas contas são criadas para usuários normais que interagem com o sistema operacional.
+Contas de usuário regulares: Essas contas são criadas para usuários normais que interagem com o sistema operacional.
+As contas de sistema são listadas no arquivo /etc/passwd assim como as contas de usuário regulares, mas algumas distribuições podem usar um grupo de usuário específico para todas as contas de sistema, como o grupo "users" no exemplo do arquivo /etc/group mencionado.
+
+num max dias entre troca de senha
+$ sudo chage -M 30 namoreir
+
+num min dias entre troca de senha
+$ sudo chage -m 2 namoreir
+
+num dias de avisos entre trocas de senha
+$ sudo chage -W 7 namoreir
+
+lista infos sobre senha
+$ sudo chage -l namoreir
+
+aplicar modificações de regra da senha
+$ sudo passwd namoreir
+
+mudar o nome do hostname
+$ sudo hostnamectl set-hostname <new_hostname>
+or
+We could also change the hostname by editing the /etc/hostname file instead.
+For the changes to take effect, we must restart the machine, which may take some
+time. The alternative is simply to show the hostname status after the change:
+$ hostnamectl status
+
+● sudo useradd "usuario": creates a new user.
+● sudo passwd "usuario": set the password
+● usermod : changes the user’s parameters: -l for the username, -c for the
+full name, -g for groups by group ID.
+● userdel -r : deletes a user and all associated files.
+● id -u : displays user ID.
+● users : shows a list of all currently logged in users.
+● cat /etc/passwd | cut -d ":" -f 1 : displays a list of all users on
+the machine.
+O comando cut -d ":" -f 1 é usado para extrair uma parte específica de cada linha da entrada. O parâmetro -d ":" define o delimitador como :. Isso significa que o comando irá dividir cada linha em campos usando : como separador.
+O parâmetro -f 1 especifica que queremos extrair apenas o primeiro campo de cada linha.
+
+groupadd : creates a new group.
+gpasswd -a : adds a user to a group.
+gpasswd -d : removes a user from a group.
+groupdel : deletes a group.
+groups : displays the groups of a user.
+id -g : shows a user’s main group ID.
+getent group : displays a list of all users in a group.
+
+teste
+Joana42miguel
+
+groups nome_do_usuário
+id nome_do_usuário
+getent group | grep nome_do_usuário | cut -d: -f1
