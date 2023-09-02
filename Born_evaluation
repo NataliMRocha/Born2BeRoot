@@ -1,0 +1,341 @@
+▫️ 	Como funciona uma máquina virtual:
+
+VM é um ambiente virtualizado, é um sistema com sua própria CPU, memória, interface de rede e armazenamento. Ou seja, é um outro computador que você pode usar através do seu computador de forma isolada, assim sem interferir no seu hardware físico. Pois o hardware que a VM é de responsabilidade do provedor da VM.
+
+
+▫️ 	Debian x Rocky:
+
+O Debian foi criado em 1993 por Ian Murdock e é um dos sistemas operacionais Linux mais antigos e populares.
+O Rocky é uma distribuição Linux relativamente nova, baseada no Debian, e foi lançada em 2021.
+O Debian tem três principais branches de desenvolvimento: estável, teste e instável[3]. A versão estável é recomendada para servidores e usuários desktop, pois é mais estável e confiável. A versão de teste oferece versões mais atualizadas dos programas, mas pode ser instável e não recebe patches de segurança. O ramo instável é onde o desenvolvimento é mais ativo e é usado para contribuições de desenvolvedores.
+O Rocky, sendo uma distribuição de lançamento contínuo, não possui um ciclo de lançamento fixo. As atualizações são lançadas regularmente, permitindo que os usuários tenham acesso às versões mais recentes dos softwares.
+
+
+▫️ 	Objetivo das máquinas virtuais:
+
+O objetivo principal é a segurança e praticidade para testar, criar, instalar todo
+tipo de coisa sem danificar seu computador físico, já que que VM usam um sistema de nuvem.
+
+
+▫️ 	APT e Aptitude:
+
+Advanced Packaging Tool
+Gerenciadores de pacotes, usados para instalar, atualizar e deletar programas.
+Ele simplifica o processo de gerenciamento de software em sistemas Unix-like, automatizando a recuperação, configuração e instalação de pacotes de software, seja a partir de arquivos pré-compilados ou compilando o código-fonte.
+Aptitude é um gerenciador de alto nível, tem interface interativa e permite que o usuário escolha pacotes para instalar ou remover, tem um sistema de busca poderoso e permite pesquisar pacotes usando padrões flexíveis. Inclui as funcionalidades do apt-get, apt-mark e apt-cache.
+
+▶️ apt update: Baixa as informações dos pacotes disponíveis nos repositórios configurados.
+▶️ apt upgrade: Instala as atualizações disponíveis para todos os pacotes instalados no sistema.
+▶️ apt install <package>: Instala um pacote específico.
+▶️ apt remove <package>: Remove um pacote específico.
+▶️ apt search <term>: Procura por pacotes que correspondem ao termo especificado.
+▶️ apt show <package>: Exibe informações detalhadas sobre um pacote específico.
+
+
+▫️ 	SELinux x AppArmor:
+
+https://www.techtarget.com/searchdatacenter/tip/Compare-two-Linux-security-modules-SELinux-vs-AppArmor
+https://www.howtogeek.com/118222/htg-explains-what-apparmor-is-and-how-it-secures-your-ubuntu-system/
+
+O AppArmor é um sistema de controle de acesso obrigatório (MAC) usado em sistemas Linux para restringir programas a um conjunto limitado de recursos, como arquivos e atributos, a fim de evitar que causem danos ao sistema, a menos que tenham permissão para isso. 
+Os perfis do AppArmor são usados para restringir processos. Esses perfis podem ser criados por desenvolvedores ou vir com o sistema ou pacotes de software. Os perfis podem ser executados em “modo de reclamação” ou “modo de aplicação” ("complain mode" or "enforce mode"). No modo de aplicação (a configuração padrão), o AppArmor impede que os aplicativos executem ações restritas. No modo de reclamação, o AppArmor permite que os aplicativos executem ações restritas, mas registra as violações.
+
+O AppArmor permite a criação de perfis personalizados para cada programa no computador. Esses perfis são regras que determinam quais recursos um programa pode acessar, com base em seu caminho de instalação. Ao contrário do SELinux, as regras do AppArmor não dependem do usuário, todos os usuários encontram o mesmo conjunto de regras quando estão executando o mesmo programa.
+
+O AppArmor pode ser executado como um serviço do sistema. Você pode iniciar ou parar o serviço usando os comandos 
+▶️ sudo /etc/init.d/apparmor start 
+▶️ sudo /etc/init.d/apparmor stop
+
+▶️ sudo apparmor_status
+▶️ sudo aa-status
+Exibe o status do AppArmor, mostrando os perfis carregados, os perfis no modo de imposição ou reclamação, e os processos definidos em imposição ou reclamação
+
+O SELinux (Security-Enhanced Linux) é outro sistema de controle de acesso obrigatório (MAC) usado em sistemas Linux para aumentar a segurança, endurecendo o acesso a arquivos e processos. Assim como o AppArmor, o SELinux permite aos administradores de sistema conceder ou negar acesso a recursos e controlar sistemas incorporados no kernel do Linux.
+
+O AppArmor concede acesso primeiro e, em seguida, aplica restrições, enquanto o SELinux restringe o acesso a todos os aplicativos por padrão e concede acesso apenas aos usuários que apresentam as certificações adequadas.
+O SELinux oferece um controle mais granular e detalhado sobre as políticas de segurança, mas é mais complexo de configurar e usar. O AppArmor, por outro lado, é mais fácil de aprender e usar, mas oferece um controle menos detalhado.
+O AppArmor protege principalmente no nível do sistema de arquivos, enquanto o SELinux protege principalmente no nível do processo.
+O AppArmor é implementado no kernel do Linux, tornando-o mais eficiente em termos de desempenho, enquanto o SELinux é implementado como um módulo de kernel carregável[14].
+O AppArmor é amplamente utilizado em sistemas baseados no Debian, enquanto o SELinux é comumente usado em sistemas baseados no Red Hat.
+
+
+Senhas:
+
+criptografia
+Dificil58*/A
+
+ROOT
+Pass42*!raiz
+
+USER
+namoreir
+Senha42*!nova
+
+
+▫️ 	Checar OS: 
+
+▶️ cat /etc/os-release
+	ou
+▶️ hostnamectl
+
+
+▫️ 	UFW:
+
+UFW Uncomplicated Firewall
+Um firewall é um dispositivo de segurança de rede que desempenha um papel crucial na proteção de uma rede, monitorando e controlando o tráfego de entrada e saída da rede. Atua como uma barreira entre redes internas seguras e redes externas não confiáveis, como a Internet. A principal função de um firewall é impor um conjunto definido de regras de segurança para determinar se deve permitir ou bloquear tráfego específico com base em vários critérios.
+Na internet, os dados são transferidos de um computador para outro usando seus endereços IP. Mas para evitar conflitos entre os diversos protocolos de internet, cada computador separa os caminhos de acesso graças a portas específicas, marcadas após o endereço IP, assim: 109.234.160.5:80 (porta #80). Os dados do site, transferidos via HTTP usam a porta 80. HTTPS usa psudort 443, porta SSH 22, porta 25 SMTP (e-mail de saída), porta 143 IMAP (e-mail de entrada), etc.
+A regra para tráfego de saída é autorizada por padrão. Se proibirmos o tráfego de saída por padrão, o gerenciador de pacotes APT e outros programas essenciais deixarão de funcionar corretamente.
+
+Checar ufw iniciado:
+▶️ sudo service ufw status
+
+Checar UFW ports/Listar regras ativas:
+▶️ sudo ufw status
+
+Autorizar ou negar a porta 4242:
+▶️ sudo ufw allow 4242
+▶️ sudo ufw deny 4242
+
+Listar regras ativas no UFW numeradas: 
+▶️ sudo ufw status numbered
+
+Para excluir uma regra, como nos será solicitado durante a avaliação do projeto, existem
+duas opções. O primeiro é um comando simples. Digamos que temos duas regras em nossa lista
+que queremos excluir, “allow 4242” e “deny 4343”:
+▶️ sudo ufw delete allow 4242
+▶️ sudo ufw delete deny 4343
+
+
+▫️ 	SSH:
+
+O SSH (Secure Shell) é um protocolo de rede que permite a comunicação segura entre dois computadores. Ele foi projetado para fornecer uma maneira segura de se conectar e transferir dados entre máquinas, utilizando criptografia para proteger a integridade e a confidencialidade das informações transmitidas. 
+O SSH é amplamente utilizado em data centers para fornecer gerenciamento seguro, acesso remoto a recursos, manutenção de hardware de servidores e administração de plataformas de virtualização. Ele também é usado para proteger a comunicação entre uma máquina local e um host remoto, permitindo o acesso remoto seguro a recursos, a execução remota de comandos, a entrega de patches e atualizações de software, entre outras tarefas administrativas.
+O SSH é usado para conectar-se a servidores, realizar alterações, fazer upload de arquivos e sair, seja usando ferramentas ou diretamente por meio do terminal. Ele permite a transferência segura de arquivos entre dois computadores usando o SFTP (SSH File Transfer Protocol). Além disso, o SSH também é usado para encaminhamento de portas (port forwarding), permitindo que um cliente mapeie a porta do servidor para proteger outros protocolos de rede, como TCP/IP.
+Uma das principais vantagens do SSH é a capacidade de autenticação segura por meio do uso de chaves públicas e privadas. Esse método de autenticação elimina a necessidade de inserir senhas toda vez que você se conectar a um host remoto. As chaves públicas são armazenadas no servidor remoto e as chaves privadas são mantidas no computador local. Quando você se conecta ao servidor, o SSH verifica a correspondência entre as chaves pública e privada para autenticar a conexão. 
+
+Checar SSH iniciado
+▶️ sudo service ssh status
+
+Abrir o doc do ssh
+▶️ sudo nano /etc/ssh/sshd_config
+
+Reiniciar o ssh com as mudanças
+▶️ sudo systemctl restart ssh
+
+Atualizar o networking
+▶️ sudo systemctl restart networking
+
+Pegar o ip:
+▶️ hostname -I
+
+Conectar
+▶️ ssh namoreir@IP -p 4242
+
+Pra sair
+▶️ exit 
+
+
+▫️ 	Groups and Users:
+
+Checar a quais grupos o usuário pertence:
+▶️ groups <username>
+▶️ getent group | grep nome_do_usuário | cut -d: -f1
+(para aparecer com quebra de linha)
+
+Checar quais usuários estão no grupo: 
+▶️ getent group <groupname>
+
+Checar usuários existentes:
+▶️ users
+
+Lista dos usuários na máquina:
+▶️ cat /etc/passwd | cut -d ":" -f1
+(O comando cut -d ":" -f 1 é usado para extrair uma parte específica de cada linha da entrada. O parâmetro -d ":" define o delimitador como :. Isso significa que o comando irá dividir cada linha em campos usando : como separador. O parâmetro -f 1 especifica que queremos extrair apenas o primeiro campo de cada linha.)
+
+Criar novo usuário:
+▶️ sudo adduser <username>
+
+Criar senha do usuário:
+▶️ sudo passwd <username>
+
+Criar novo grupo:
+▶️ sudo addgroup <groupname>
+
+Colocar usuário no grupo:
+▶️ sudo gpasswd -a <username> <groupname>
+
+Remover usuário de um grupo:
+▶️ sudo gpasswd -d <username> <groupname>
+
+Apagar grupo:
+▶️ sudo groupdel <groupname>
+
+Adicionar um usuário ao grupo sudo:
+▶️ sudo usermod -aG sudo <username> 
+
+Remover usuário e arquivos associados a ele:
+▶️ sudo userdel -r <username>
+
+infos do usuário:
+▶️ getent passwd <username>
+
+Exibir informações sobre o usuário atualmente logado no sistema ou sobre um usuário específico:
+▶️ id <username>
+
+Modificar as informações de login de um usuário existente:
+▶️ usermod 
+-l, --login <new_login>: Altera o nome de login do usuário.
+-u, --uid <new_uid>: Altera o UID do usuário.
+-g, --gid <new_gid>: Altera o GID (ID de grupo) do grupo principal do usuário.
+-d, --home <new_home_directory>: Altera o diretório inicial do usuário.
+-s, --shell <new_shell>: Altera o shell padrão do usuário.
+-a, --append: Adiciona o usuário a um grupo adicional.
+-G, --groups <groups>: Define a lista de grupos secundários do usuário.
+-e, --expiredate <date>: Define a data de expiração da conta do usuário.
+-p, --password <encrypted_password>: Define a senha criptografada do usuário.
+-L, --lock: Bloqueia a conta do usuário.
+-U, --unlock: Desbloqueia a conta do usuário.
+
+No arquivo /etc/login.defs no Debian, a opção UID_SELECTION (ou UID_MIN) define o valor mínimo do UID (User ID) que pode ser atribuído a um usuário ao criar uma nova conta. O UID é um identificador único atribuído a cada usuário no sistema Linux.
+Por padrão, o UID_SELECTION é definido como 1000, o que significa que o sistema começa a atribuir UIDs a partir desse valor. Isso é útil para distinguir entre contas de usuário regulares e contas de sistema. Contas de usuário regulares têm UIDs maiores que 1000, enquanto contas de sistema têm UIDs menores que 1000.
+
+Ao criar um novo usuário usando o comando useradd, você pode especificar o UID desejado usando a opção -u ou --uid. Por exemplo:
+
+▶️ sudo useradd -u 1500 username
+
+Contas de usuário regulares: Essas contas são criadas para usuários normais que interagem com o sistema operacional.
+Contas de usuário regulares: Essas contas são criadas para usuários normais que interagem com o sistema operacional.
+As contas de sistema são listadas no arquivo /etc/passwd assim como as contas de usuário regulares, mas algumas distribuições podem usar um grupo de usuário específico para todas as contas de sistema, como o grupo "users" no exemplo do arquivo /etc/group mencionado.
+
+
+▫️ 	Politica de senha:
+
+Explicar como definir regras de senha e mostrar:
+Definir:
+▶️ sudo nano /etc/security/pwquality.conf
+Mostrar:
+▶️ sudo nano /etc/login.defs
+
+status da senha:
+▶️ chage -l <username>
+grou
+setar num max dias entre troca de senha
+▶️ sudo chage -M 30 namoreir
+
+num min dias entre troca de senha
+▶️ sudo chage -m 2 namoreir
+
+num dias de avisos entre trocas de senha
+▶️ sudo chage -W 7 namoreir
+
+aplicar modificações de regra da senha
+▶️ sudo passwd namoreir
+
+
+▫️ 	Nome do host e partições:
+
+Verificar hostname:
+▶️ hostname
+
+Modificar nome de host pelo login do avaliador e reiniciar:
+▶️ sudo hostnamectl set-hostname <newname>
+▶️ hostnamectl status
+▶️ reboot
+
+Da pra mudar o hostname também editando o arquivo /etc/hostname
+
+Verificar partições:
+▶️ lsblk
+
+Explicar como funciona LVM e do que se trata:
+Gerenciamento de volume lógico (LVM) - um método alternativo de gerenciamento de sistemas de armazenamento no Linux. Em vez de criar partições tradicionais, o LVM permite criar volumes lógicos que podem ser facilmente montados em seu sistema de arquivos como se fossem partições de disco.
+
+Aqui estão os principais componentes do LVM:
+
+Volumes Físicos (PV):
+Os volumes físicos são os dispositivos de armazenamento brutos que servem como blocos de construção para níveis mais elevados de abstração no LVM.
+Os volumes físicos podem ser dispositivos de armazenamento regulares, como discos rígidos ou unidades de estado sólido.
+O LVM grava um cabeçalho no volume físico para alocá-lo para gerenciamento.
+
+Grupos de Volume (VG):
+Os grupos de volumes abstraem as características dos volumes físicos subjacentes e os combinam em conjuntos de armazenamento.
+Os grupos de volumes funcionam como dispositivos lógicos unificados com capacidade de armazenamento combinada dos volumes físicos dos componentes.
+Os grupos de volumes são identificados com o prefixo "vg" nos utilitários LVM.
+
+Volumes Lógicos (LV):
+Os volumes lógicos são criados dentro de grupos de volumes e atuam como partições flexíveis.
+Elas são funcionalmente equivalentes às partições de um disco físico, mas oferecem mais flexibilidade.
+Os volumes lógicos são onde os usuários e aplicativos interagem com o espaço de armazenamento fornecido pelo LVM.
+Os volumes lógicos são identificados com o prefixo "lv" nos utilitários LVM.
+
+O LVM oferece diversas vantagens, incluindo:
+Redimensionamento dinâmico: os volumes lógicos podem ser redimensionados dinamicamente, permitindo ajustar facilmente o tamanho do seu armazenamento sem interromper o sistema.
+Snapshotting: O LVM suporta a criação de snapshots de volumes lógicos, que são cópias pontuais dos dados. Isso pode ser útil para fins de backup ou teste de alterações sem afetar os dados originais.
+Distribuição e espelhamento: o LVM suporta distribuição (distribuição de dados em vários volumes físicos) e espelhamento (criação de cópias redundantes de dados) para melhorar o desempenho e a redundância de dados.
+Flexibilidade: o LVM permite gerenciar facilmente o armazenamento adicionando ou removendo volumes físicos, criando ou redimensionando volumes lógicos e movendo dados entre volumes físicos.
+
+https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations
+
+Journaling file sistem
+Um sistema de arquivos com diário é um tipo de sistema de arquivos que usa uma técnica chamada registro em diário para garantir a consistência e integridade dos dados no disco. Ele mantém um registro, ou diário, das alterações que estão prestes a ser feitas no sistema de arquivos, permitindo uma recuperação rápida em caso de falha do sistema ou falha de energia.
+Consistência e Recuperação:
+No caso de uma falha do sistema ou falha de energia, o sistema de arquivos com registro em diário pode usar as informações do diário para recuperar rapidamente o sistema de arquivos para um estado consistente.
+Durante o processo de recuperação, o sistema de arquivos reproduz o diário, aplicando as alterações registradas ao sistema de arquivos.
+Isso garante que o sistema de arquivos retorne a um estado consistente sem a necessidade de uma operação demorada de verificação do sistema de arquivos (fsck).
+
+Alguns sistemas de arquivos de registro em diário populares incluem:
+ext4 (Quarto Sistema de Arquivos Estendido): O sistema de arquivos padrão para muitas distribuições Linux, oferecendo melhor desempenho e escalabilidade em comparação com seu antecessor, ext3.
+NTFS (New Technology File System): O sistema de arquivos padrão para sistemas operacionais baseados em Windows NT, fornecendo recursos de registro em diário junto com outros recursos avançados.
+XFS (Extended File System): Um sistema de arquivos com diário de alto desempenho desenvolvido pela SGI, projetado para escalabilidade e suporte a grandes sistemas de arquivos[5].
+JFS (Journaled File System): Um sistema de arquivos com registro em diário originalmente desenvolvido pela IBM para AIX, conhecido por sua robustez e baixo uso de CPU.
+
+https://www.maketecheasier.com/journaling-in-file-system/
+
+
+RESUMO:
+LVM é um gerenciador de discos do Kernel. Permite
+que discos e partições sejam trocados sem
+interrupção do serviço, alterar o tamanho dos
+volumes, criar backup de imagens dos volumes, criar
+um volume único a partir de vários ou criar volumes
+espelhados em mais de um disco. Seu objetivo é a
+flexibilidade no gerenciamento de discos.
+
+
+▫️ 	Sudo:
+
+Se sudo está instalado:
+▶️ apt-cache policy sudo
+
+Atribuir user to sudo:
+▶️ sudo gpasswd -a <username> sudo
+
+Explicar valor e funcionamento do sudo e mostrar implementações das regras:
+O sudo é usado para que você possa executar um comando de root, administrador sem precisar trocar de usuário. Eu posso autorizar meu usuário a usá-lo, assim não precisaria usar a senha de administrador. Isso deixa mais seguro a execução de comando, já que
+é muito mais arriscado usar o root, qualquer alteração afetaria todo o sistema e não apenas um usuário.
+
+Verificar arquivo na pasta /var/log/sudo/:
+▶️ cat /var/log/sudo/sudo.log
+
+O comando requiretty no sudo é uma opção de configuração que pode ser definida no arquivo sudoers para especificar se um terminal (TTY) é necessário para um usuário executar comandos com privilégios elevados usando o comando sudo.
+Em computação, o comando tty no Unix e sistemas operacionais semelhantes ao Unix imprime o nome do arquivo do terminal conectado à entrada padrão. É usado para identificar o terminal atualmente em uso.
+
+▫️ 	Monitoramento De Script:
+Mostrar script monitoring:
+▶️ sudo nano /root/scripts/monitoring.sh
+
+Mostrar script sleep:
+▶️ sudo nano /root/scripts/sleep.sh
+
+Mostrar cron:
+▶️ sudo crontab -e
+
+Explicar o que é CRON:
+Cron é um comando no Linux que permite programar
+tarefas para serem executadas de maneira
+independente. Isso ajuda no monitoramento do
+sistema.
+
+Desativar cron sem alterar script:
+▶️ sudo systemctl disable cron
+▶️ sudo reboot

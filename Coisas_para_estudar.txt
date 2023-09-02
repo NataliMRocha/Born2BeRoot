@@ -1,0 +1,42 @@
+https://www.debian.org/download
+https://www.debian.org/releases/bookworm/amd64/install.pt.pdf
+
+O kernel é um componente fundamental de um sistema operacional que tem controle completo sobre o hardware e software do sistema. Ele é responsável por facilitar a interação entre os componentes de hardware e software, bem como controlar os recursos do sistema, como memória, processador, dispositivos de entrada/saída e sistemas de arquivos.
+
+Algumas características e funcionalidades importantes do kernel são:
+
+O kernel é o primeiro programa carregado na memória durante a inicialização do sistema operacional.
+Ele gerencia os processos do sistema, alocando recursos de hardware para eles e garantindo que eles sejam executados de forma justa e eficiente.
+O kernel também controla a memória do sistema, alocando e desalocando espaço para os processos e garantindo a proteção da memória entre os processos.
+Além disso, o kernel é responsável pela comunicação entre os processos, permitindo a troca de dados e sincronização entre eles.
+O kernel também fornece suporte para dispositivos de hardware, como drivers de dispositivo, permitindo a interação com periféricos.
+
+The Unified Extensible Firmware Interface (UEFI, successor of the EFI) is an interface between operating systems and firmware. It provides a standard environment for booting an operating system and running pre-boot applications.
+
+O firmware é um tipo de software embutido em um hardware específico, como um dispositivo eletrônico ou um componente de um sistema. Ele é responsável por controlar e fornecer instruções permanentes para o hardware, permitindo que ele se comunique com outros dispositivos e execute funções básicas de entrada/saída.
+
+Algumas informações importantes sobre o firmware são:
+
+O firmware é armazenado em uma memória não-volátil, como ROM (Read-Only Memory), EPROM (Erasable Programmable Read-Only Memory) ou flash memory. Esses tipos de memória garantem que as instruções do firmware sejam mantidas mesmo em caso de falha de energia.
+O firmware difere dos drivers de dispositivo, pois está incorporado diretamente no hardware, enquanto os drivers são instalados no sistema operacional.
+O firmware é responsável por inicializar o hardware e executar as funções básicas necessárias para o seu funcionamento.
+Atualizações de firmware podem ser lançadas pelos fabricantes para corrigir bugs, adicionar recursos ou melhorar o desempenho e a segurança do hardware.
+Alguns exemplos de dispositivos que possuem firmware são: placas-mãe de computador, impressoras, roteadores, câmeras digitais, smartphones, TVs, entre outros.
+
+O GRUB (GRand Unified Bootloader) é um gerenciador de boot amplamente utilizado em sistemas operacionais baseados em Unix, como o Linux. Ele é responsável por carregar o kernel do sistema operacional na memória e iniciar o processo de inicialização do sistema.
+O GRUB é capaz de carregar vários sistemas operacionais instalados em um computador, permitindo ao usuário escolher qual sistema operacional inicializar durante o processo de inicialização.
+Ele suporta diferentes sistemas de arquivos, como ext4, NTFS, FAT, entre outros, permitindo que o usuário acesse e inicialize a partir de partições formatadas em diferentes sistemas de arquivos.
+O GRUB também suporta a configuração de várias opções de inicialização, como passar parâmetros para o kernel, definir o nível de execução do sistema (modo de usuário único, modo de recuperação, etc.) e configurar opções de inicialização avançadas.
+Além disso, o GRUB possui uma interface de linha de comando que permite ao usuário executar comandos e realizar várias tarefas, como editar opções de inicialização, carregar módulos adicionais e solucionar problemas de inicialização.
+
+
+inet 10.13.200.140 netmask 255.255.0.0 broadcast 10.0.2.255
+inet6 fe80::a00:27ff:fe31:3294 prefixlen 64 scopeid 0x20<link>
+ether 08:00:27:31:32:94 txqueuelen 1000 (ethernet)
+gateway 10.13.254.254
+
+change the etc/network/interfaces
+
+
+Existem IPs públicos e privados. Os endereços privados são usados internamente (tipo em casa) - um roteador é a interface que separa o interno (2 pc's, 4 celulares, 3 smartwatches por exemplo) do mundo externo. Então o roteador da casa atribui um endereço de IP privado a cada aparelho que se conecta a ele. E o roteador em si tem um endereço de IP público atribuído a ele. Ou seja, a casa é vista como 1 endereço público, sendo que dentro da casa existem 9 IPs privados. O endereço IP privado do seu dispositivo será traduzido em NAT (Network Address Translation) para o endereço público do roteador.
+
