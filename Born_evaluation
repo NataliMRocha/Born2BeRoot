@@ -10,7 +10,7 @@ O Rocky é uma distribuição Linux relativamente nova, baseada no Debian, e foi
 O Debian tem três principais branches de desenvolvimento: estável, teste e instável[3]. A versão estável é recomendada para servidores e usuários desktop, pois é mais estável e confiável. A versão de teste oferece versões mais atualizadas dos programas, mas pode ser instável e não recebe patches de segurança. O ramo instável é onde o desenvolvimento é mais ativo e é usado para contribuições de desenvolvedores.
 O Rocky, sendo uma distribuição de lançamento contínuo, não possui um ciclo de lançamento fixo. As atualizações são lançadas regularmente, permitindo que os usuários tenham acesso às versões mais recentes dos softwares.
 
-
+sud
 ▫️ 	Objetivo das máquinas virtuais:
 
 O objetivo principal é a segurança e praticidade para testar, criar, instalar todo
@@ -139,7 +139,7 @@ Pra sair
 
 Checar a quais grupos o usuário pertence:
 ▶️ groups <username>
-▶️ getent group | grep nome_do_usuário | cut -d: -f1
+▶️ getent group | grep nome_do_usuário | cut -d":" -f1
 (para aparecer com quebra de linha)
 
 Checar quais usuários estão no grupo: 
@@ -327,14 +327,26 @@ Mostrar script monitoring:
 Mostrar script sleep:
 ▶️ sudo nano /root/scripts/sleep.sh
 
+O script sleep.sh é um script em shell que utiliza o comando sleep para pausar a execução por um determinado período de tempo. Aqui está uma explicação passo a passo de como o script funciona:
+#!bin/bash
+BOOT_MIN=$(uptime -s | cut -d ":" -f 2)
+BOOT_SEC=$(uptime -s | cut -d ":" -f 3)
+
+DELAY=$(bc <<< $BOOT_MIN%10*60+$BOOT_SEC)
+
+sleep $DELAY
+
+O comando uptime -s serve para obter o tempo de inicialização do sistema e, em seguida, o comando cut é usado para extrair os minutos e segundos dessa informação. Esses valores são armazenados nas variáveis BOOT_MIN e BOOT_SEC, respectivamente.
+A próxima linha calcula o tempo de atraso (DELAY) com base nos minutos e segundos obtidos anteriormente. Isso é feito usando o comando bc para realizar cálculos matemáticos. O operador <<< é usado para passar a expressão matemática para o bc. A expressão $BOOT_MIN%10*60+$BOOT_SEC calcula o tempo de atraso em segundos, onde % é o operador de módulo e * é o operador de multiplicação.
+A última linha do script usa o comando sleep para pausar a execução por DELAY segundos.
+Em resumo, esse script calcula o tempo de atraso com base nos minutos e segundos desde a inicialização do sistema e, em seguida, pausa a execução por esse tempo de atraso usando o comando sleep.
+
 Mostrar cron:
 ▶️ sudo crontab -e
 
 Explicar o que é CRON:
-Cron é um comando no Linux que permite programar
-tarefas para serem executadas de maneira
-independente. Isso ajuda no monitoramento do
-sistema.
+Cron é um comando no Linux que permite programar tarefas para serem executadas de maneira
+independente. Isso ajuda no monitoramento do sistema.
 
 Desativar cron sem alterar script:
 ▶️ sudo systemctl disable cron
