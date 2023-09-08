@@ -59,19 +59,6 @@ O AppArmor é implementado no kernel do Linux, tornando-o mais eficiente em term
 O AppArmor é amplamente utilizado em sistemas baseados no Debian, enquanto o SELinux é comumente usado em sistemas baseados no Red Hat.
 
 
-Senhas:
-
-criptografia
-Dificil58*/A
-
-ROOT
-Pass42*!raiz
-
-USER
-namoreir
-Senha42*!nova
-
-
 ▫️ 	Checar OS: 
 
 ▶️ cat /etc/os-release
@@ -89,8 +76,14 @@ A regra para tráfego de saída é autorizada por padrão. Se proibirmos o tráf
 Checar ufw iniciado:
 ▶️ sudo service ufw status
 
-Checar UFW ports/Listar regras ativas:
+Checar UFW listar regras ativas:
 ▶️ sudo ufw status
+
+Ver portas abertas
+▶️ ss -tulnp
+
+Ver o que cada porta está escutando:
+▶️ sudo lsof -i
 
 Autorizar ou negar a porta 4242:
 ▶️ sudo ufw allow 4242
@@ -104,6 +97,7 @@ duas opções. O primeiro é um comando simples. Digamos que temos duas regras e
 que queremos excluir, “allow 4242” e “deny 4343”:
 ▶️ sudo ufw delete allow 4242
 ▶️ sudo ufw delete deny 4343
+
 
 
 ▫️ 	SSH:
