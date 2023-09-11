@@ -32,6 +32,26 @@ Aptitude é um gerenciador de alto nível, tem interface interativa e permite qu
 ▶️ apt show <package>: Exibe informações detalhadas sobre um pacote específico.
 
 
+▫️ 	Sudo:
+
+Se sudo está instalado:
+▶️ apt-cache policy sudo
+▶️ sudo --version
+
+Atribuir user to sudo:
+▶️ sudo gpasswd -a <username> sudo
+
+Explicar valor e funcionamento do sudo e mostrar implementações das regras:
+O sudo é usado para que você possa executar um comando de root, administrador sem precisar trocar de usuário. Eu posso autorizar meu usuário a usá-lo, assim não precisaria usar a senha de administrador. Isso deixa mais seguro a execução de comando, já que
+é muito mais arriscado usar o root, qualquer alteração afetaria todo o sistema e não apenas um usuário.
+
+Verificar arquivo na pasta /var/log/sudo/:
+▶️ cat /var/log/sudo/sudo.log
+
+O comando requiretty no sudo é uma opção de configuração que pode ser definida no arquivo sudoers para especificar se um terminal (TTY) é necessário para um usuário executar comandos com privilégios elevados usando o comando sudo.
+Em computação, o comando tty no Unix e sistemas operacionais semelhantes ao Unix imprime o nome do arquivo do terminal conectado à entrada padrão. É usado para identificar o terminal atualmente em uso.
+
+
 ▫️ 	SELinux x AppArmor:
 
 https://www.techtarget.com/searchdatacenter/tip/Compare-two-Linux-security-modules-SELinux-vs-AppArmor
@@ -295,24 +315,6 @@ um volume único a partir de vários ou criar volumes
 espelhados em mais de um disco. Seu objetivo é a
 flexibilidade no gerenciamento de discos.
 
-
-▫️ 	Sudo:
-
-Se sudo está instalado:
-▶️ apt-cache policy sudo
-
-Atribuir user to sudo:
-▶️ sudo gpasswd -a <username> sudo
-
-Explicar valor e funcionamento do sudo e mostrar implementações das regras:
-O sudo é usado para que você possa executar um comando de root, administrador sem precisar trocar de usuário. Eu posso autorizar meu usuário a usá-lo, assim não precisaria usar a senha de administrador. Isso deixa mais seguro a execução de comando, já que
-é muito mais arriscado usar o root, qualquer alteração afetaria todo o sistema e não apenas um usuário.
-
-Verificar arquivo na pasta /var/log/sudo/:
-▶️ cat /var/log/sudo/sudo.log
-
-O comando requiretty no sudo é uma opção de configuração que pode ser definida no arquivo sudoers para especificar se um terminal (TTY) é necessário para um usuário executar comandos com privilégios elevados usando o comando sudo.
-Em computação, o comando tty no Unix e sistemas operacionais semelhantes ao Unix imprime o nome do arquivo do terminal conectado à entrada padrão. É usado para identificar o terminal atualmente em uso.
 
 ▫️ 	Monitoramento De Script:
 Mostrar script monitoring:
