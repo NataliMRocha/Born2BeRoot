@@ -1,0 +1,128 @@
+Checar ufw iniciado:
+▶️ sudo service ufw status
+
+Checar SSH iniciado
+▶️ sudo service ssh status
+
+▫️ 	Checar OS: 
+
+▶️ cat /etc/os-release
+	ou
+▶️ hostnamectl
+
+Checar a quais grupos o usuário pertence:
+▶️ groups <username>
+▶️ getent group | grep nome_do_usuário | cut -d":" -f1
+(para aparecer com quebra de linha)
+
+Criar novo usuário:
+▶️ sudo adduser <username>
+
+Criar senha do usuário:
+▶️ sudo passwd <username>
+
+Checar quais usuários estão no grupo: 
+▶️ getent group <groupname>
+
+Regras de senha:
+Definir:
+▶️ sudo nano /etc/security/pwquality.conf
+Mostrar:
+▶️ sudo nano /etc/login.defs
+
+status da senha:
+▶️ chage -l <username>
+
+Criar novo grupo:
+▶️ sudo addgroup <groupname>
+
+Colocar usuário no grupo:
+▶️ sudo gpasswd -a <username> <groupname>
+
+Verificar hostname:
+▶️ hostname
+
+Modificar nome de host pelo login do avaliador e reiniciar:
+▶️ sudo hostnamectl set-hostname <newname>
+▶️ hostnamectl status
+▶️ reboot
+
+Da pra mudar o hostname também editando o arquivo /etc/hostname && /etc/hosts
+
+Verificar partições:
+▶️ lsblk
+
+Se sudo está instalado:
+▶️ apt-cache policy sudo
+▶️ sudo --version
+
+Atribuir user to sudo:
+▶️ sudo gpasswd -a <username> sudo
+
+
+Mostrar config.
+▶️ sudo visudo
+
+Verificar arquivo na pasta /var/log/sudo/:
+▶️ cat /var/log/sudo/sudo.log
+
+Checar ufw iniciado:
+▶️ sudo service ufw status
+
+Checar UFW listar regras ativas:
+▶️ sudo ufw status
+
+Ver portas abertas
+▶️ ss -tulnp
+
+Ver o que cada porta está escutando:
+▶️ sudo lsof -i
+
+Autorizar ou negar a porta 4242:
+▶️ sudo ufw allow 4242
+▶️ sudo ufw deny 4242
+
+Listar regras ativas no UFW numeradas: 
+▶️ sudo ufw status numbered
+
+Checar SSH iniciado
+▶️ sudo service ssh status
+
+Abrir o doc do ssh
+▶️ sudo nano /etc/ssh/sshd_config
+
+Reiniciar o ssh com as mudanças
+▶️ sudo systemctl restart ssh
+
+Atualizar o networking
+▶️ sudo systemctl restart networking
+
+Pegar o ip:
+▶️ hostname -I
+
+Conectar
+▶️ ssh namoreir@IP -p 4242
+
+Pra sair
+▶️ exit 
+
+Mostrar script monitoring:
+▶️ sudo nano /root/scripts/monitoring.sh
+
+Mostrar script sleep:
+▶️ sudo nano /root/scripts/sleep.sh
+
+Mostrar cron:
+▶️ sudo crontab -e
+
+Desativar cron sem alterar script:
+▶️ sudo systemctl disable cron
+▶️ sudo reboot
+
+
+Bonus
+http://127.0.0.1:8080/
+▶️ sudo systemctl start lighttpd
+▶️ mysql -u root -p
+▶️ show databases;
+▶️ php -v

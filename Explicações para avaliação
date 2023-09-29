@@ -1,6 +1,6 @@
 ▫️ 	Como funciona uma máquina virtual:
 
-VM é um ambiente virtualizado, é um sistema com sua própria CPU, memória, interface de rede e armazenamento. Ou seja, é um outro computador que você pode usar através do seu computador de forma isolada, assim sem interferir no seu hardware físico. Pois o hardware que a VM é de responsabilidade do provedor da VM.
+VM é um ambiente virtualizado, é um sistema com sua própria CPU, memória, interface de rede e armazenamento. Ou seja, é um outro computador que você pode usar através do seu computador de forma isolada, assim sem interferir no seu hardware físico.
 
 
 ▫️ 	Debian x Rocky:
@@ -10,7 +10,7 @@ O Rocky é uma distribuição Linux relativamente nova, baseada no Debian, e foi
 O Debian tem três principais branches de desenvolvimento: estável, teste e instável[3]. A versão estável é recomendada para servidores e usuários desktop, pois é mais estável e confiável. A versão de teste oferece versões mais atualizadas dos programas, mas pode ser instável e não recebe patches de segurança. O ramo instável é onde o desenvolvimento é mais ativo e é usado para contribuições de desenvolvedores.
 O Rocky, sendo uma distribuição de lançamento contínuo, não possui um ciclo de lançamento fixo. As atualizações são lançadas regularmente, permitindo que os usuários tenham acesso às versões mais recentes dos softwares.
 
-sud
+
 ▫️ 	Objetivo das máquinas virtuais:
 
 O objetivo principal é a segurança e praticidade para testar, criar, instalar todo
@@ -22,6 +22,7 @@ tipo de coisa sem danificar seu computador físico, já que que VM usam um siste
 Advanced Packaging Tool
 Gerenciadores de pacotes, usados para instalar, atualizar e deletar programas.
 Ele simplifica o processo de gerenciamento de software em sistemas Unix-like, automatizando a recuperação, configuração e instalação de pacotes de software, seja a partir de arquivos pré-compilados ou compilando o código-fonte.
+
 Aptitude é um gerenciador de alto nível, tem interface interativa e permite que o usuário escolha pacotes para instalar ou remover, tem um sistema de busca poderoso e permite pesquisar pacotes usando padrões flexíveis. Inclui as funcionalidades do apt-get, apt-mark e apt-cache.
 
 ▶️ apt update: Baixa as informações dos pacotes disponíveis nos repositórios configurados.
@@ -30,27 +31,6 @@ Aptitude é um gerenciador de alto nível, tem interface interativa e permite qu
 ▶️ apt remove <package>: Remove um pacote específico.
 ▶️ apt search <term>: Procura por pacotes que correspondem ao termo especificado.
 ▶️ apt show <package>: Exibe informações detalhadas sobre um pacote específico.
-
-
-▫️ 	Sudo:
-
-Se sudo está instalado:
-▶️ apt-cache policy sudo
-▶️ sudo --version
-
-Atribuir user to sudo:
-▶️ sudo gpasswd -a <username> sudo
-
-Explicar valor e funcionamento do sudo e mostrar implementações das regras:
-O sudo é usado para que você possa executar um comando de root, administrador sem precisar trocar de usuário. Eu posso autorizar meu usuário a usá-lo, assim não precisaria usar a senha de administrador. Isso deixa mais seguro a execução de comando, já que
-é muito mais arriscado usar o root, qualquer alteração afetaria todo o sistema e não apenas um usuário.
-
-Verificar arquivo na pasta /var/log/sudo/:
-▶️ cat /var/log/sudo/sudo.log
-
-O comando requiretty no sudo é uma opção de configuração que pode ser definida no arquivo sudoers para especificar se um terminal (TTY) é necessário para um usuário executar comandos com privilégios elevados usando o comando sudo.
-Em computação, o comando tty no Unix e sistemas operacionais semelhantes ao Unix imprime o nome do arquivo do terminal conectado à entrada padrão. É usado para identificar o terminal atualmente em uso.
-
 
 ▫️ 	SELinux x AppArmor:
 
@@ -75,16 +55,8 @@ O SELinux (Security-Enhanced Linux) é outro sistema de controle de acesso obrig
 O AppArmor concede acesso primeiro e, em seguida, aplica restrições, enquanto o SELinux restringe o acesso a todos os aplicativos por padrão e concede acesso apenas aos usuários que apresentam as certificações adequadas.
 O SELinux oferece um controle mais granular e detalhado sobre as políticas de segurança, mas é mais complexo de configurar e usar. O AppArmor, por outro lado, é mais fácil de aprender e usar, mas oferece um controle menos detalhado.
 O AppArmor protege principalmente no nível do sistema de arquivos, enquanto o SELinux protege principalmente no nível do processo.
-O AppArmor é implementado no kernel do Linux, tornando-o mais eficiente em termos de desempenho, enquanto o SELinux é implementado como um módulo de kernel carregável[14].
+O AppArmor é implementado no kernel do Linux, tornando-o mais eficiente em termos de desempenho, enquanto o SELinux é implementado como um módulo de kernel carregável.
 O AppArmor é amplamente utilizado em sistemas baseados no Debian, enquanto o SELinux é comumente usado em sistemas baseados no Red Hat.
-
-
-▫️ 	Checar OS: 
-
-▶️ cat /etc/os-release
-	ou
-▶️ hostnamectl
-
 
 ▫️ 	UFW:
 
@@ -119,7 +91,6 @@ que queremos excluir, “allow 4242” e “deny 4343”:
 ▶️ sudo ufw delete deny 4343
 
 
-
 ▫️ 	SSH:
 
 O SSH (Secure Shell) é um protocolo de rede que permite a comunicação segura entre dois computadores. Ele foi projetado para fornecer uma maneira segura de se conectar e transferir dados entre máquinas, utilizando criptografia para proteger a integridade e a confidencialidade das informações transmitidas. 
@@ -148,6 +119,12 @@ Conectar
 Pra sair
 ▶️ exit 
 
+▫️ 	Checar OS: 
+
+▶️ cat /etc/os-release
+	ou
+▶️ hostnamectl
+
 
 ▫️ 	Groups and Users:
 
@@ -164,7 +141,7 @@ Checar usuários existentes:
 
 Lista dos usuários na máquina:
 ▶️ cat /etc/passwd | cut -d ":" -f1
-(O comando cut -d ":" -f 1 é usado para extrair uma parte específica de cada linha da entrada. O parâmetro -d ":" define o delimitador como :. Isso significa que o comando irá dividir cada linha em campos usando : como separador. O parâmetro -f 1 especifica que queremos extrair apenas o primeiro campo de cada linha.)
+O comando cut -d ":" -f 1 é usado para extrair uma parte específica de cada linha da entrada. O parâmetro -d ":" define o delimitador como :. Isso significa que o comando irá dividir cada linha em campos usando : como separador. O parâmetro -f 1 especifica que queremos extrair apenas o primeiro campo de cada linha.
 
 Criar novo usuário:
 ▶️ sudo adduser <username>
@@ -220,6 +197,24 @@ Ao criar um novo usuário usando o comando useradd, você pode especificar o UID
 Contas de usuário regulares: Essas contas são criadas para usuários normais que interagem com o sistema operacional.
 Contas de usuário regulares: Essas contas são criadas para usuários normais que interagem com o sistema operacional.
 As contas de sistema são listadas no arquivo /etc/passwd assim como as contas de usuário regulares, mas algumas distribuições podem usar um grupo de usuário específico para todas as contas de sistema, como o grupo "users" no exemplo do arquivo /etc/group mencionado.
+
+▫️ 	Sudo:
+
+Se sudo está instalado:
+▶️ apt-cache policy sudo
+▶️ sudo --version
+
+Atribuir user to sudo:
+▶️ sudo gpasswd -a <username> sudo
+
+O sudo é usado para que você possa executar um comando de root, administrador sem precisar trocar de usuário. Eu posso autorizar meu usuário a usá-lo, assim não precisaria usar a senha de administrador. Isso deixa mais seguro a execução de comando, já que
+é muito mais arriscado usar o root, qualquer alteração afetaria todo o sistema e não apenas um usuário.
+
+Verificar arquivo na pasta /var/log/sudo/:
+▶️ cat /var/log/sudo/sudo.log
+
+O comando requiretty no sudo é uma opção de configuração que pode ser definida no arquivo sudoers para especificar se um terminal (TTY) é necessário para um usuário executar comandos com privilégios elevados usando o comando sudo.
+Em computação, o comando tty no Unix e sistemas operacionais semelhantes ao Unix imprime o nome do arquivo do terminal conectado à entrada padrão. É usado para identificar o terminal atualmente em uso.
 
 
 ▫️ 	Politica de senha:
