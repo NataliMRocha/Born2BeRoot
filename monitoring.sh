@@ -18,15 +18,15 @@ IPV4=$(hostname -I | awk '{print $1}')
 MAC=$(ip link show | grep link/ether | awk '{print $2}')
 SUDONB=$(grep COMMAND /var/log/sudo/sudo.log | wc -l)
 
-echo " # Architecture:  ${ARCH}"
-echo " # CPU physical           ${CPU_PHY}"
-echo " # vCPU:          ${VIRPROCESS}"
-echo " # Memory Usage:  ${USEDRAM}/${TOTALRAM}MB (${PERCENTRAM})"
-echo " # Disk Usage:            ${USEDMEM}/${TOTALMEM} (${PERCENTMEM})"
-echo " # CPU load:              ${CPU_LOAD}"
-echo " # Last Boot:             ${LASTBOOT}"
-echo " # LVM use:               ${LVMACTIVE}"
-echo " # Connections TCP:       ${ACTIVECONEC} ESTABLISHED"
-echo " # User log:              ${USERUSING}"
-echo " # Networks:              ${IPV4} (IP) / ${MAC} (MAC)"
-echo " # Sudo:          ${SUDONB} cmd"
+wall " # Architecture:  ${ARCH}
+       # CPU physical           ${CPU_PHY}
+       # vCPU:          ${VIRPROCESS}
+       # Memory Usage:  ${USEDRAM}/${TOTALRAM}MB (${PERCENTRAM})
+       # Disk Usage:            ${USEDMEM}/${TOTALMEM} (${PERCENTMEM})
+       # CPU load:              ${CPU_LOAD}
+       # Last Boot:             ${LASTBOOT}
+       # LVM use:               ${LVMACTIVE}
+       # Connections TCP:       ${ACTIVECONEC} ESTABLISHED
+       # User log:              ${USERUSING}
+       # Networks:              ${IPV4} (IP) / ${MAC} (MAC)
+       # Sudo:          ${SUDONB} cmd"
